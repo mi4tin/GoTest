@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"moqikaka.com/X1/PlatformHelper/jsonHelper"
+	"moqikaka.com/X1/PlatformHelper/timeHelper"
+	"moqikaka.com/goutil/typeUtil"
 	"net/http"
 	_ "net/http/pprof"
 	"net/url"
@@ -67,6 +69,10 @@ type Test11 struct {
 }
 
 func TestA(t *testing.T) {
+	int32V, errf := typeUtil.Int32("")
+	fmt.Println("int32v:", int32V, errf)
+	return
+	fmt.Println("week", timeHelper.YearWeek(time.Now()))
 	return
 	ba := 1
 	fmt.Println(float64(ba) * 0.01)
