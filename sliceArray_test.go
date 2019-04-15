@@ -3,7 +3,11 @@ package main
 import (
 	"fmt"
 	"testing"
+	"moqikaka.com/X1/PlatformHelper/jsonHelper"
 )
+
+
+
 
 func TestSlice(t *testing.T) {
 	d := make([]int, 3)
@@ -15,6 +19,14 @@ func TestSlice(t *testing.T) {
 	d = append(d, 5)
 	d = append(d, 6)
 	fmt.Println("sliceTest%v", d, cap(d))
+}
+
+
+func TestSlice1(t *testing.T) {
+	m := make([]string, 1)
+	m[0] = "2342"
+	//m[1] = "2342"
+	fmt.Println(jsonHelper.JsonString(m))
 }
 
 func TestArray(t *testing.T) {
