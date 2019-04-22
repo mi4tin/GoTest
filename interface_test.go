@@ -1,6 +1,37 @@
 package main
 
-import "testing"
+import (
+	"testing"
+	"fmt"
+)
+
+type ITest1Obj interface {
+	Test()
+	Test1()
+}
+
+type Obj1 struct {
+	Y int
+}
+
+func (this *Obj1) Test(){
+	fmt.Println("test7788",this.Y)
+}
+
+func (this *Obj1) Test1(){
+	fmt.Println("test7788",this.Y)
+}
+
+
+
+func TestInterface(t *testing.T){
+	obj1:=&Obj1{Y:100,}
+	var iobj ITest1Obj
+	iobj=obj1
+	iobj.Test()
+}
+
+
 
 type ITestObj interface {
 	GetPropX() int
