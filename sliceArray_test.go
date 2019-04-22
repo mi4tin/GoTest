@@ -37,15 +37,107 @@ func TestArray(t *testing.T) {
 	fmt.Println(d)
 }
 
-func BenchmarkArray(b *testing.B) {
+
+
+func TestMapLen(t *testing.T) {
+	maps:=make(map[int32]string,7)
+	maps[1]="a"
+	maps[2]="b"
+	maps[3]="c"
+	maps[4]="d"
+	maps[5]="e"
+	maps[6]="f"
+
+	 //x:= [len]int32{1,2,3}
+	 var y []int32
+	 y=append(y,1)
+	 fmt.Println("wsh:",y)
+}
+
+
+func BenchmarkASArray(b *testing.B) {
+	maps:=make(map[int32]string,7)
+	maps[1]="a"
+	maps[2]="b"
+	maps[3]="c"
+	maps[4]="d"
+	maps[5]="e"
+	maps[6]="f"
+
+	len:=len(maps)
+	fmt.Println("map.len:",len)
+	var x [7]int32
 	for i := 0; i < b.N; i++ {
+		index:=0
+		for k,_:=range maps{
+			x[index]=k
+			index++
+		}
+
 		//_ = array()
 	}
 }
 
-func BenchmarkSlice(b *testing.B) {
+func BenchmarkASSlice(b *testing.B) {
+	maps:=make(map[int32]string,10)
+	maps[1]="a"
+	maps[2]="b"
+	maps[3]="c"
+	maps[4]="d"
+	maps[5]="e"
+	maps[6]="f"
+
 	for i := 0; i < b.N; i++ {
-		//_ = slice()
+		var x []int32
+		for k,_:=range maps{
+			x=append(x,k)
+		}
+		//_ = array()
+	}
+
+}
+
+
+func BenchmarkASSlice1(b *testing.B) {
+	maps:=make(map[int32]string,10)
+	maps[1]="a"
+	maps[2]="b"
+	maps[3]="c"
+	maps[4]="d"
+	maps[5]="e"
+	maps[6]="f"
+
+
+	for i := 0; i < b.N; i++ {
+		len:=len(maps)
+		x:=make([]int32,len)
+		for k,_:=range maps{
+			x=append(x,k)
+		}
+		//_ = array()
+	}
+
+
+}
+
+
+func BenchmarkASSlice2(b *testing.B) {
+	maps:=make(map[int32]string,10)
+	maps[1]="a"
+	maps[2]="b"
+	maps[3]="c"
+	maps[4]="d"
+	maps[5]="e"
+	maps[6]="f"
+
+
+	for i := 0; i < b.N; i++ {
+		len:=len(maps)
+		x:=make([]int32,len,len)
+		for k,_:=range maps{
+			x=append(x,k)
+		}
+		//_ = array()
 	}
 
 }
