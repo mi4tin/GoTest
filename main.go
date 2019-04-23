@@ -6,11 +6,11 @@ import (
 )
 
 func main() {
-	//fmt.Println("main1")
-	//select {
-	//
-	//}
-	//fmt.Println("main2")
+	fmt.Println("main1")
+	select {
+
+	}
+	fmt.Println("main2")
 
 
 	router := gin.Default()

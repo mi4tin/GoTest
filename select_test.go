@@ -6,6 +6,26 @@ import (
 	"sync"
 )
 
+func TestCloseChannel(t *testing.T) {
+	c1 := make(chan interface{},1);c1<-"c1a";close(c1)
+	c2 := make(chan interface{}); close(c2)
+	c3 := make(chan interface{})//; close(c3)
+
+	var c1Count, c2Count, c3Count int
+	for i := 10; i >= 0; i-- {
+		select {
+		case c1v:=<-c1:
+			fmt.Println(c1v)
+			c1Count++
+		case <-c2:
+			c2Count++
+		case <-c3:
+			c3Count++
+		}
+	}
+	fmt.Printf("c1Count: %d\nc2Count: %d\nc3Count: %d\n", c1Count, c2Count, c3Count)
+}
+
 //代表此channel只能写，不能读
 func producer(out chan <- int)  {
 	for i:=0; i<=10; i++ {
@@ -33,14 +53,12 @@ func TestSingleChan(t *testing.T){
 }
 
 func TestSelect(t *testing.T){
-
 	wg:=sync.WaitGroup{}
 	wg.Add(1)
 	//var c2 <-chan interface{}
 	c0:=make(chan  interface{},10)
 	read:=make(<-chan interface{},10)//单向读
 	write:=make(chan<- interface{},10)//单向写
-
 
 	//var c3 chan<- interface{}
 	fmt.Println("aa0")
