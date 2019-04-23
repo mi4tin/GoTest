@@ -7,7 +7,3 @@ func T1(ax string) {
 	a = b //23333
 	b = a
 }
-
-func main() {
-	T1("12")
-}

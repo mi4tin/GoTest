@@ -3,14 +3,73 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 )
 
-func main() {
-	fmt.Println("main1")
-	select {
 
+func ExitFunc()  {
+	fmt.Println("开始退出...")
+	fmt.Println("执行清理...")
+	fmt.Println("结束退出...")
+	os.Exit(0)
+}
+func main() {
+	signalChan := make(chan os.Signal, 10)
+	// 捕捉 Ctrl+c 和 kill 信号，写入signalChan
+	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM,syscall.SIGKILL)
+	// 此处执行处理逻辑
+	//nsqd.Main()
+	fmt.Println("执行处理逻辑")
+
+	// signalChan阻塞进程
+	go func() {
+		for{
+			sign:=<-signalChan
+			if sign==syscall.SIGTERM||sign==syscall.SIGINT{
+				fmt.Println("over")
+				os.Exit(0)
+			}
+		}
+	}()
+
+	//模拟业务程序运行
+	time.Sleep(100*time.Minute)
+	return
+
+	//创建监听退出chan
+	c := make(chan os.Signal)
+	//监听指定信号 ctrl+c kill
+	signal.Notify(c, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
+	go func() {
+		for s := range c {
+			switch s {
+			case syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT:
+				fmt.Println("退出", s)
+				ExitFunc()
+			default:
+				fmt.Println("other", s)
+			}
+		}
+	}()
+
+	fmt.Println("进程启动...")
+	sum := 0
+	for {
+		sum++
+		fmt.Println("sum:", sum)
+		time.Sleep(time.Second)
 	}
-	fmt.Println("main2")
+
+
+
+	//fmt.Println("main1")
+	//select {
+	//
+	//}
+	//fmt.Println("main2")
 
 
 	router := gin.Default()
