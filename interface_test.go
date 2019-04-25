@@ -15,13 +15,16 @@ type Obj1 struct {
 }
 
 func (this *Obj1) Test(){
-	fmt.Println("test7788",this.Y)
+	fmt.Println("test:",this.Y)
 }
 
 func (this *Obj1) Test1(){
-	fmt.Println("test7788",this.Y)
+	fmt.Println("test1",this.Y)
 }
 
+func (this *Obj1) Test2(){
+	fmt.Println("test2",this.Y)
+}
 
 
 func TestInterface(t *testing.T){
@@ -30,6 +33,25 @@ func TestInterface(t *testing.T){
 	iobj=obj1
 	iobj.Test()
 }
+
+//测试接口转换
+
+
+func Cause(err error) error {
+	type causer interface {
+		Cause() error
+	}
+
+	for err != nil {
+		cause, ok := err.(causer)
+		if !ok {
+			break
+		}
+		err = cause.Cause()
+	}
+	return err
+}
+
 
 
 
