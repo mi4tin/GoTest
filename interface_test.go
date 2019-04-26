@@ -35,8 +35,6 @@ func TestInterface(t *testing.T){
 }
 
 //测试接口转换
-
-
 func Cause(err error) error {
 	type causer interface {
 		Cause() error
