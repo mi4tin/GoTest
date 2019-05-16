@@ -16,7 +16,13 @@ func ExitFunc()  {
 	fmt.Println("结束退出...")
 	os.Exit(0)
 }
+
+
+
 func main() {
+	defertest1()
+	defertest2()
+	return
 	signalChan := make(chan os.Signal, 10)
 	// 捕捉 Ctrl+c 和 kill 信号，写入signalChan
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM,syscall.SIGKILL)

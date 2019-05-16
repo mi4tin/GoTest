@@ -7,8 +7,10 @@ import (
 )
 
 func TestDefer(t *testing.T) {
-	x := exa8()
-	fmt.Println("TestDefer:", *x)
+
+	//fmt.Println("i:",)
+	x := defertest2()
+	fmt.Println("TestDefer:", x)
 }
 
 func TestPointer1(t *testing.T) {
@@ -19,6 +21,8 @@ func TestPointer1(t *testing.T) {
 	fmt.Println("a =", a) // a = [0 1 2 6]
 
 }
+
+
 
 func exa8() (res *int) {
 	var i = 1
