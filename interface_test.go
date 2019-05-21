@@ -14,6 +14,27 @@ type Obj1 struct {
 	Y int
 }
 
+
+type Obj5 struct {
+	Y int
+}
+
+func ATest(it ITest1Obj){
+
+}
+
+func (this Obj5) Test(){
+	fmt.Println("test:",this.Y)
+}
+
+func (this Obj5) Test1(){
+	fmt.Println("test:",this.Y)
+}
+
+func BTest(){
+	ATest(Obj5{})
+}
+
 func (this *Obj1) Test(){
 	fmt.Println("test:",this.Y)
 }
