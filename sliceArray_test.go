@@ -18,6 +18,17 @@ func TestSlice(t *testing.T) {
 	d = append(d, 5)
 	d = append(d, 6)
 	fmt.Println("sliceTest%v", d, cap(d))
+
+	nums := []int{21, 31, 14}
+	sum := 0
+	for num := range nums {
+		//如果将for后面的_去掉，结果是6
+		//这是因为 for _ 表示遍历数组的下标，从nums[0]，nums[1]，nums[2]依次开始遍历，
+		//所以最后的值为sum=2+3+4=9；但是如果把 for _ 去掉，就变成了遍历0 1 2，所以sum=0+1+2=3。
+		//sum += num
+		fmt.Println("TestSlice:",num)
+	}
+	fmt.Println("TestSlice:",sum)
 }
 
 

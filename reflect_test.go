@@ -9,6 +9,20 @@ import (
 
 var offset uintptr = 0XFFFF
 
+type RestFulHello struct {
+}
+
+func (ff *RestFulHello)Get(){
+
+}
+
+func TestReflect1(t *testing.T) {
+h:=&RestFulHello{}
+	fmt.Println( reflect.TypeOf(h).String())
+	mh,_:=reflect.TypeOf(h).MethodByName("Get")
+	fmt.Println(mh.Name)
+}
+
 func TestReflect(t *testing.T) {
 	fmt.Println("offset", offset)
 }
