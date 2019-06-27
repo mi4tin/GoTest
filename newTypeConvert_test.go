@@ -7,6 +7,14 @@ import (
 	"testing"
 )
 
+func TestInt(t *testing.T) {
+	var a int64=3
+	var b int32
+	b=int32(a)
+	fmt.Println(b)
+	return
+	}
+
 func TestNew3(t *testing.T) {
 	return
 	out := make(chan int, 1)
