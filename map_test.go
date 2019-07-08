@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"moqikaka.com/X1/PlatformHelper/jsonHelper"
 	"testing"
 )
 
@@ -15,9 +14,9 @@ func testMap(m map[int]int) {
 func TestMapSpace(t *testing.T) {
 	m := make(map[string]string, 1)
 	m[""] = "2342"
-	m["2"] = "2342"
-	m["3"] = "2342"
-	fmt.Println(jsonHelper.JsonString(m))
+	m["2"] = "a"
+	m["3"] = "b"
+	fmt.Println("mp:",m["2-a"],m["3-a"])
 }
 
 func BenchmarkCapMap(b *testing.B) {
