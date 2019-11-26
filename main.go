@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 	"time"
 )
@@ -20,6 +21,30 @@ func ExitFunc()  {
 
 
 func main() {
+	//fmt.Println("pre:",runtime.GOMAXPROCS(8))
+	var wg sync.WaitGroup
+	wg.Add(1)
+	fmt.Println("start")
+	//return
+	j:=0
+	go func() {
+		for{
+			j++
+			//fmt.Println(11)
+		}
+	}()
+
+	i:=0
+	go func() {
+		for{
+			i++
+			fmt.Println("i:",i)
+			//logUtil.InfoLog("i:%v",i)
+		}
+	}()
+
+	wg.Wait()
+	return
 	defertest1()
 	defertest2()
 	return

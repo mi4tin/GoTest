@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/json-iterator/go"
+	"moqikaka.com/goutil/timeUtil"
 	"testing"
 )
 
@@ -16,6 +17,9 @@ type jsonT struct {
 }
 
 func TestJson(t *testing.T) {
+	fmt.Print(timeUtil.ToDateTime("2019-10-15T00:00:00"))
+	return
+
 	s := `{"A":"sdfsfdsfdsfsdfsdfdsfdsfdsfdsfsdfdsfdsddddddddddddddddddddd","B":2}`
 	jsont := &jsonT{}
 	err := json.Unmarshal([]byte(s), jsont)
