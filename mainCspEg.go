@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"runtime"
-	"runtime/debug"
 	"time"
+	"unsafe"
 )
 
 func deadloop() {
@@ -23,23 +23,22 @@ func worker() {
 }
 
 func main() {
-	fmt.Printf("There are %d cores.\n", runtime.NumCPU())
+	fmt.Println("default gomax:",runtime.GOMAXPROCS(2))
+	fmt.Println("cur gomax:",runtime.GOMAXPROCS(0))
 
-	go worker()
+	go func(){
+		fmt.Println("hello world")
+	}()
 
-	go deadloop()
+	fmt.Println("size:",unsafe.Sizeof(int64(1)))
 
-	i := 3
-	for {
-		fmt.Printf("main is running, i=%d\n", i)
-		i--
-		if i == 0 {
-			//debug.PrintStack()
-			runtime.GC()
-
-			debug.PrintStack()
+	go func(){
+		for {
+			_=make([]int64, 8192)
 		}
+	}()
+	fmt.Println("end")
+	select {}
 
-		time.Sleep(time.Second * 1)
-	}
+
 }
