@@ -13,10 +13,8 @@ func testMap(m map[int]int) {
 
 func TestMapSpace(t *testing.T) {
 	m := make(map[string]string, 1)
-	m[""] = "2342"
-	m["2"] = "a"
 	m["3"] = "b"
-	fmt.Println("mp:",m["2-a"],m["3-a"])
+	fmt.Println("mp:"+m["a"]+"#end")
 }
 
 func BenchmarkCapMap(b *testing.B) {

@@ -106,21 +106,21 @@ func testFunc3(obj ITestObj) {
 var myobj1 Obj
 
 func Benchmark_Ptr(t *testing.B) {
-	return
+	//return
 	for i := 0; i < t.N; i++ {
 		testFunc1(&myobj1)
 	}
 }
 
 func Benchmark_PtrAndCallF(t *testing.B) {
-	return
+	//return
 	for i := 0; i < t.N; i++ {
 		testFunc2(&myobj1)
 	}
 }
 
 func Benchmark_Interface(t *testing.B) {
-	return
+	//return
 	for i := 0; i < t.N; i++ {
 		testFunc3(&myobj1)
 	}
