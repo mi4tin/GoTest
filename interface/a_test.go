@@ -35,6 +35,8 @@ func testFunc3(obj ITestObj) {
 	obj.SetPropX(obj.GetPropX() + 1)
 	obj.SetPropX(obj.GetPropX() + 1)
 	obj.SetPropX(obj.GetPropX() + 1)
+	obj.SetPropX(obj.GetPropX() + 1)
+	obj.SetPropX(obj.GetPropX() + 1)
 }
 
 func testFunc4(obj ITestObj) {
