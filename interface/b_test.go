@@ -23,7 +23,19 @@ func a3(obj map[string]string){
 	obj["a"]="2"
 }
 
+func a4(obj []int){
+	obj[0]=2
+}
+
 func TestReferences(t *testing.T){
+	//测试切片不是引用类型
+	var slice []int
+	slice[0]=1
+	a4(slice)
+
+	fmt.Println(slice[0])
+	return
+
 	//测试map是引用类型
 	var obj2 map[string]string
 	obj2=map[string]string{}
