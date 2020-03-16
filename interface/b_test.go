@@ -38,9 +38,9 @@ func a5(obj map[string]string){
 }
 
 func addV1(a *[]int32){
-	(*a)[0]=0
-	(*a)[1]=1
-	(*a)[2]=2
+	//(*a)[0]=0
+	//(*a)[1]=1
+	//(*a)[2]=2
 	*a=append(*a,3)
 	*a=append(*a,4)
 //	a=&b
@@ -57,7 +57,8 @@ func TestReferences(t *testing.T){
 	slice2 = new([]int32)//给指针初始化
 	//fmt.Println("a:",slice2)
 	//*slice2 =make([]int32,3)//给切片初始化，分配一个切片内存
-	//fmt.Println(slice2)
+	*slice2=append(*slice2,1)
+	fmt.Println("a:",slice2)
 	addV1(slice2)
 	fmt.Println(slice2)
 	return
