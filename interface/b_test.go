@@ -42,17 +42,22 @@ func addV1(a *[]int32){
 	(*a)[1]=1
 	(*a)[2]=2
 	*a=append(*a,3)
+	*a=append(*a,4)
 //	a=&b
 	fmt.Println(a)
 }
 
 func TestReferences(t *testing.T){
+	//测试make
+	slice4:=make([]*int32,5)
+	fmt.Println(slice4)
+
 	//测试切片指针是引用类型。切片增加元素有用
 	var slice2 * []int32
 	slice2 = new([]int32)//给指针初始化
-	fmt.Println(slice2)
-	*slice2 =make([]int32,4)//给切片初始化，分配一个切片内存
-	fmt.Println(slice2)
+	//fmt.Println("a:",slice2)
+	//*slice2 =make([]int32,3)//给切片初始化，分配一个切片内存
+	//fmt.Println(slice2)
 	addV1(slice2)
 	fmt.Println(slice2)
 	return
