@@ -24,15 +24,71 @@ func a3(obj map[string]string){
 }
 
 func a4(obj []int){
-	obj[0]=2
+	obj[0]=3
+}
+
+func addV(a []int32){
+	a=append(a,2)
+	fmt.Println(a)
+}
+
+func a5(obj map[string]string){
+	obj["b"]="2"
+	fmt.Println(obj)
+}
+
+func addV1(a *[]int32){
+	(*a)[0]=0
+	(*a)[1]=1
+	(*a)[2]=2
+	*a=append(*a,3)
+//	a=&b
+	fmt.Println(a)
 }
 
 func TestReferences(t *testing.T){
-	//测试切片不是引用类型
-	var slice []int
-	slice[0]=1
-	a4(slice)
+	//测试切片指针是引用类型。切片增加元素有用
+	var slice2 * []int32
+	slice2 = new([]int32)//给指针初始化
+	fmt.Println(slice2)
+	*slice2 =make([]int32,4)//给切片初始化，分配一个切片内存
+	fmt.Println(slice2)
+	addV1(slice2)
+	fmt.Println(slice2)
+	return
 
+	//测试切片整体不是引用类型，测试切片增加元素无用
+	slice1 :=[]int32{}
+	slice1=make([]int32,2)
+	slice1=append(slice1,1)
+	fmt.Println(slice1)
+	addV(slice1)
+	fmt.Println(slice1)
+	return
+
+	//测试整个map是引用类型
+	var obj3 map[string]string
+	obj3=map[string]string{}
+	obj3["a"]="1"
+	fmt.Println(obj3)
+	a5(obj3)
+	fmt.Println(obj3)
+	return
+
+	//测试切片整体不是引用类型，测试切片增加元素无用
+	slice3 :=[]int32{}
+	slice1=append(slice3,1)
+	fmt.Println(slice3)
+	addV(slice3)
+	fmt.Println(slice3)
+	return
+
+	//测试切片为更改值时，为引用类型
+	var slice []int
+	slice=[]int{}
+	//slice[0]=1
+	slice=append(slice,1)
+	a4(slice)
 	fmt.Println(slice[0])
 	return
 
