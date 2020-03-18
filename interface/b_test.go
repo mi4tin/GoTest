@@ -9,6 +9,9 @@ type A struct {
 	Name string
 }
 
+type B struct {
+	Name string
+}
 
 func a1(obj A){
 	obj.Name="2"
@@ -48,6 +51,21 @@ func addV1(a *[]int32){
 }
 
 func TestReferences(t *testing.T){
+	//测试struct可用==
+	var obj4 A
+	obj4=A{Name:"1"}
+	var obj5 A
+	obj5=A{Name:"1"}
+	isEqual:=obj4==obj5
+	fmt.Println(isEqual)
+
+	//测试struct不是引用类型
+	var obj0 A
+	obj0=A{Name:"1"}
+	a1(obj0)
+	fmt.Println(obj0.Name)
+	return
+
 	//测试make
 	slice4:=make([]*int32,5)
 	fmt.Println(slice4)
@@ -111,13 +129,6 @@ func TestReferences(t *testing.T){
 	obj1=&A{Name:"1"}
 	a2(obj1)
 	fmt.Println(obj1.Name)
-	return
-
-	//测试struct不是引用类型
-	var obj0 A
-	obj0=A{Name:"1"}
-	a1(obj0)
-	fmt.Println(obj0.Name)
 	return
 
 	//测试*，&的使用
