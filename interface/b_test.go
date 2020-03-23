@@ -51,6 +51,61 @@ func addV1(a *[]int32){
 }
 
 func TestReferences(t *testing.T){
+	//测试chan读取后，是否数量减少
+	cha := make(chan int,2)
+	fmt.Printf("len:%v\n",len(cha))
+	cha<-1
+	cha<-2
+	//cha<-3
+	fmt.Printf("len:%v\n",len(cha))
+	<-cha
+	fmt.Printf("len:%v\n",len(cha))
+	return
+
+	//测试整个map是引用类型
+	var obj3 map[string]string
+	obj3=map[string]string{}
+	obj3["a"]="1"
+	fmt.Println(obj3)
+	a5(obj3)
+	fmt.Println(obj3)
+	return
+
+	//测试map是引用类型
+	var obj2 map[string]string
+	obj2=map[string]string{}
+	obj2["a"]="1"
+	a3(obj2)
+	fmt.Println(obj2["a"])
+	return
+
+	//测试切片指针是引用类型。切片增加元素有用
+	var slice2 * []int32
+	slice2 = new([]int32)//给指针初始化
+	//fmt.Println("a:",slice2)
+	//*slice2 =make([]int32,3)//给切片初始化，分配一个切片内存
+	*slice2=append(*slice2,1)
+	fmt.Println("a:",slice2)
+	addV1(slice2)
+	fmt.Println(slice2)
+	return
+
+	//测试map默认无序，每次输出顺序可能不一样
+	mObj1:=map[string]string{}
+	mObj1["a"]="a"
+	mObj1["c"]="c"
+	mObj1["b"]="b"
+	mObj1["d"]="d"
+	fmt.Println(mObj1)
+	for _,v:=range mObj1{
+		fmt.Println(v)
+	}
+	fmt.Println("--------------")
+	for _,v:=range mObj1{
+		fmt.Println(v)
+	}
+	return
+
 	//测试struct可用==
 	var obj4 A
 	obj4=A{Name:"1"}
@@ -70,16 +125,7 @@ func TestReferences(t *testing.T){
 	slice4:=make([]*int32,5)
 	fmt.Println(slice4)
 
-	//测试切片指针是引用类型。切片增加元素有用
-	var slice2 * []int32
-	slice2 = new([]int32)//给指针初始化
-	//fmt.Println("a:",slice2)
-	//*slice2 =make([]int32,3)//给切片初始化，分配一个切片内存
-	*slice2=append(*slice2,1)
-	fmt.Println("a:",slice2)
-	addV1(slice2)
-	fmt.Println(slice2)
-	return
+
 
 	//测试切片整体不是引用类型，测试切片增加元素无用
 	slice1 :=[]int32{}
@@ -90,14 +136,7 @@ func TestReferences(t *testing.T){
 	fmt.Println(slice1)
 	return
 
-	//测试整个map是引用类型
-	var obj3 map[string]string
-	obj3=map[string]string{}
-	obj3["a"]="1"
-	fmt.Println(obj3)
-	a5(obj3)
-	fmt.Println(obj3)
-	return
+
 
 	//测试切片整体不是引用类型，测试切片增加元素无用
 	slice3 :=[]int32{}
@@ -116,13 +155,7 @@ func TestReferences(t *testing.T){
 	fmt.Println(slice[0])
 	return
 
-	//测试map是引用类型
-	var obj2 map[string]string
-	obj2=map[string]string{}
-	obj2["a"]="1"
-	a3(obj2)
-	fmt.Println(obj2["a"])
-	return
+
 
 	//测试指针是引用类型
 	var obj1 *A
